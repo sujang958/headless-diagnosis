@@ -1,9 +1,10 @@
-const { firefox } = require('playwright');
+const { chromium } = require('playwright');
 
 module.exports = async () => {
-  const browser = await firefox.launch({headless: false})
+  const browser = await chromium.launch({ headless: false })
   const context = await browser.newContext({ locale: 'ko-kR' })
   const page = await context.newPage()
+
   page.on('dialog', async dialog => {
     await dialog.dismiss()
     const msg = dialog.message()
