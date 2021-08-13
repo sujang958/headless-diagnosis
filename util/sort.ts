@@ -31,7 +31,7 @@ export default {
         else if (city.includes('세종'))
             return '08'
         else if (city.includes('경기'))
-            return '08'
+            return '10'
         else if (city.includes('강원'))
             return '11'
         else if (city.includes('충청북'))

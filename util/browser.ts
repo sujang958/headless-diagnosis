@@ -6,7 +6,7 @@ interface returnObject {
 }
 
 const createBrowser = async (): Promise<returnObject> => {
-    const browser: Browser = await chromium.launch()
+    const browser: Browser = await chromium.launch({ headless: false })
     const context: BrowserContext = await browser.newContext({ locale: 'ko-kR', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36' })
     const page: Page = await context.newPage()
 

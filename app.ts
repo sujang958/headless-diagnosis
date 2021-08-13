@@ -11,6 +11,5 @@ import util from "./util/index";
         await browser.close()
     } catch (e) {
         console.log(e)
-        process.exit()
     }
 })();
