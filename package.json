@@ -1,8 +1,13 @@
 {
   "name": "headless_diagnosis",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./app.ts",
   "license": "MIT",
+  "scripts": {
+    "start": "node ./build/app.js",
+    "test": "ts-node ./app.ts",
+    "build": "tsc"
+  },
   "devDependencies": {
     "@types/node": "^16.4.8",
     "playwright": "^1.12.2",
