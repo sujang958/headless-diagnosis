@@ -2,16 +2,16 @@ import students from "./students.json"
 import Diagnosis from "./util/diagnosis"
 
 const diagnosis = async () => {
-  try {
-    students.map(async ({ student, school }) => {
+  students.map(async ({ student, school }) => {
+    try {
       const diagnosis = new Diagnosis(student, school)
       await diagnosis.createBrowser()
       await diagnosis.diagnose()
       console.log(new Date().toLocaleString(), student.name, " Done!")
-    })
-  } catch (e) {
-    console.log(new Date().toLocaleString(), student.name, e)
-  }
+    } catch (e) {
+      console.log(new Date().toLocaleString(), student.name, e)
+    }
+  })
 }
 
 diagnosis()
