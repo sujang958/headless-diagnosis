@@ -1,18 +1,16 @@
-import util from "./util/index"
 import students from "./students.json"
+import Diagnosis from "./util/diagnosis"
 
 const diagnosis = async () => {
   try {
-    students.map(async (info) => {
-      const { browser, page } = await util.createBrowser()
-      await util.selectSchool(page, info.school)
-      await util.putSutdentInfo(page, info.student)
-      await util.diagnosis(page, ["1", "1", "1", "1"]) // 1 = no; 2 = yes
-      await browser.close()
-      console.log(info.student.name, " Done!")
+    students.map(async ({ student, school }) => {
+      const diagnosis = new Diagnosis(student, school)
+      await diagnosis.createBrowser()
+      await diagnosis.diagnose()
+      console.log(new Date().toLocaleString(), " Done!")
     })
   } catch (e) {
-    console.log(e)
+    console.log(new Date().toLocaleString(), e)
   }
 }
 
