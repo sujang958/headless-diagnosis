@@ -7,10 +7,10 @@ const diagnosis = async () => {
       const diagnosis = new Diagnosis(student, school)
       await diagnosis.createBrowser()
       await diagnosis.diagnose()
-      console.log(new Date().toLocaleString(), " Done!")
+      console.log(new Date().toLocaleString(), student.name, " Done!")
     })
   } catch (e) {
-    console.log(new Date().toLocaleString(), e)
+    console.log(new Date().toLocaleString(), student.name, e)
   }
 }
 
