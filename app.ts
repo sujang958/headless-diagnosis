@@ -2,16 +2,18 @@ import students from "./students.json"
 import Diagnosis from "./util/diagnosis"
 
 const diagnosis = async () => {
-  try {
-    students.map(async ({ student, school }) => {
+  // Korea's UTC difference is + 9
+  if (new Date().getUTCHours() + 9 > 6) return
+  students.map(async ({ student, school }) => {
+    try {
       const diagnosis = new Diagnosis(student, school)
       await diagnosis.createBrowser()
       await diagnosis.diagnose()
-      console.log(new Date().toLocaleString(), " Done!")
-    })
-  } catch (e) {
-    console.log(new Date().toLocaleString(), e)
-  }
+      console.log(new Date().toLocaleString(), student.name, " Done!")
+    } catch (e) {
+      console.log(new Date().toLocaleString(), student.name, e)
+    }
+  })
 }
 
 diagnosis()
