@@ -14,6 +14,7 @@ const createBrowser = async (): Promise<returnObject> => {
         await dialog.dismiss()
         const msg: string = dialog.message()
         console.log(msg)
+        browser.close()
         throw new Error(msg)
     })
 

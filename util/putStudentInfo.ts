@@ -1,6 +1,6 @@
 import { Page } from "playwright"
 
-interface Student {
+export interface Student {
   name: string
   birth: string
   pw: string

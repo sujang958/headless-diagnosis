@@ -1,6 +1,6 @@
 import { Page } from "playwright"
 import sort from "./sort"
-interface School {
+export interface School {
     city: string
     level: string
     name: string
