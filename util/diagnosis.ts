@@ -28,9 +28,7 @@ class Diagnosis {
     await this.page.click("#btnConfirm2")
   }
 
-  public async diagnose(
-    survey: string[] = ["1", "1", "1", "1"]
-  ): Promise<Buffer> {
+  public async diagnose(survey: string = "1"): Promise<Buffer> {
     await this.setSchool()
     await this.setStudent()
 
@@ -38,11 +36,16 @@ class Diagnosis {
       waitUntil: "domcontentloaded",
     })
     await this.page.click(
-      ".memberWrap > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1) > span:nth-child(1)"
+      "#container > div > section.memberWrap > div:nth-child(2) > ul > li:nth-child(1) > a.survey-button"
     )
     await this.page.waitForSelector("#survey_q3a1")
-    for (const i in survey)
-      await this.page.click(`#survey_q${Number(i) + 1}a${survey[i]}`)
+    const surveys = await this.page.$$(".question-article")
+    await Promise.all([
+      ...surveys.map(
+        async (_, i) =>
+          await this.page.click(`#survey_q${Number(i) + 1}a${survey}`)
+      ),
+    ])
     await this.page.click("#btnConfirm")
     await this.page.waitForSelector(".guide_center > p:nth-child(2)")
     const screenshot = await this.page.screenshot()
