@@ -16,10 +16,10 @@ const diagnosis = async () => {
 
 diagnosis()
 setInterval(() => {
-  const KoreaHours = new Date().getUTCHours() + 9
-  if (KoreaHours > 24) {
-    if (KoreaHours - 24 < 7) diagnosis()
-  } else if (KoreaHours < 7) diagnosis()
+  const KoreaTime = new Date()
+  KoreaTime.setUTCHours(9)
+  const KoreaHours = KoreaTime.getHours()
+  if (KoreaHours < 7) diagnosis()
 }, 1000 * 60 * 5) // this is for loop
 
 process.on("uncaughtException", (e) => console.log(e))
